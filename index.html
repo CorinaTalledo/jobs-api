@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/76f1588c46.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Careers</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" role="button" id="btn-jobs">See posted positions </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" role="button" id="show-form">Create new position</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+
+
+        <div class="text-center view visually-hidden" id="spinner" aria-label="Loading...">
+            <div class="spinner-border" role="status">
+            </div>
+        </div>
+
+        <!-- Seccion de filtrado -->
+        <section class="container m-5 d-flex flex-wrap justify-content-center">
+            <form class="row col-8 column-gap-3">
+                <select class="col form-select" id="select-filter">
+                    <option selected>Select a Filter</option>
+                    <option value="location">Location</option>
+                    <option value="seniority">Seniority</option>
+                    <option value="category">Category</option>
+                </select>
+
+                <select class="col form-select" id="select-option-filter">
+                </select>
+
+                <div class="col d-flex justify-content-around">
+                    <button type="button" class="btn btn-dark" id="btn-search">Search</button>
+                    <button type="reset" class="btn btn-outline-primary">Clear</button>
+                </div>
+            </form>
+        </section>
+
+
+        <!-- Seccion Trabajos publicados  -->
+        <section class="container m-auto mb-5 view" id="section-jobs">
+            <div class="gap-4 d-flex flex-wrap justify-content-center" id="cards-jobs">
+                <!-- <div class="card p-2 g-col-4" style="width: 300px; height: 250px; id="${id}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="job-description card-text text-truncate">${description}</p>
+                        <div class="mb-3">
+                            <span class="badge text-bg-primary">${location}</span>
+                            <span class="badge text-bg-primary">${category}</span>
+                            <span class="badge text-bg-primary">${seniority}</span>
+                        </div>
+                        <button type="button" class="btn btn-dark see-details-button" data-id="${id}">See Details</button>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+
+        <!-- Seccion Crear Nueva Oferta -->
+        <section class="container m-auto mb-5 view" id="section-add-job">
+            <form class="row g-3 d-flex flex-wrap justify-content-center">
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="d-flex flex-column col-md-6 mx-4">
+                        <div class="mb-3 form-floating">
+                            <input type="text" class="form-control" id="add-job-title"
+                                placeholder="Front End Developer">
+                            <label for="add-job-title">Job Title</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="add-description"
+                                style="height: 250px"></textarea>
+                            <label for="add-description">Description</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 form-floating d-flex flex-column">
+                        <input type="url" class="form-control" id="add-img" placeholder="Insert a valid picture">
+                        <label for="add-img">Image link</label>
+
+                        <div class="mt-3 new-img-thumbnail d-flex justify-content-center">
+                            <img src="https://rdironworks.com/wp-content/uploads/2017/12/dummy-200x200.png"
+                                class="img-thumbnail object-fit-cover border rounded">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="d-flex flex-column col-md-3 mx-5">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="add-location" placeholder="Remote">
+                            <label for="add-location">Location</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="add-seniority" placeholder="Semi Senior">
+                            <label for="add-seniority">Seniority</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="add-category" placeholder="Development">
+                            <label for="add-category">Category</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="add-long-term">
+                            <label class="form-check-label" for="add-long-term">
+                                Long Term
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 form-floating d-flex flex-column">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="add-salary" placeholder="$10.000">
+                            <label for="add-salary">Salary</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="add-vacations" placeholder="2 weeks">
+                            <label for="add-vacations">Vacations</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="add-health-ensurance" placeholder="OSDE 210">
+                            <label for="add-health-ensurance">Health Ensurance</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="add-internet-paid">
+                            <label class="form-check-label" for="add-internet-paid">
+                                Internet Paid
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center form-floating col-md-3 mx-5">
+                        <input type="text" class="form-control" id="add-languages" placeholder="JavaScript">
+                        <label for="add-languages">Languages</label>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-dark" type="button" id="btn-add-job">Submit form</button>
+                </div>
+            </form>
+        </section>
+
+
+        <!-- Seccion de Detalle -->
+        <section class="container m-auto mb-5 view" id="section-detail">
+                <div class="card mb-3" style="max-width: 50%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" id="detail-name">Front End</h5>
+                                <p class="card-text" id="detail-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quas cupiditate provident atque magni, similique cum odit nesciunt aspernatur temporibus sit nemo accusamus. Exercitationem, aut vel. Quia nulla exercitationem quo debitis assumenda. Dolores quia sapiente quae! Facere labore dolore minima rem rerum fugiat odit perspiciatis, ea aliquam sed dolor commodi nulla ducimus obcaecati ex incidunt adipisci tenetur deleniti. Deserunt eligendi quaerat eveniet debitis ratione magni laboriosam numquam corrupti doloremque consequuntur. Id at doloribus explicabo quod commodi optio fuga reiciendis blanditiis officiis dolore, distinctio consequuntur doloremque ratione atque? Facilis, temporibus. Vero quia autem architecto id sint modi expedita, sit eius. Nemo!</p>
+                                <div class="mb-3">
+                                    <span class="badge text-bg-primary" id="detail-location">Remote</span>
+                                    <span class="badge text-bg-primary" id="detail-category">Development</span>
+                                    <span class="badge text-bg-primary" id="detail-seniority">Senior</span>
+                                </div>
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-success"><i class="fa-solid fa-pencil me-2"></i>Edit</button>
+                                    <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can me-2" id="btn-delete-job"></i>Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+
+        <!-- Seccion Editar oferta -->
+        <section class="container m-auto mb-5 view" id="section-edit-job">
+            <form class="row g-3 d-flex flex-wrap justify-content-center">
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="d-flex flex-column col-md-6 mx-4">
+                        <div class="mb-3 form-floating">
+                            <input type="text" class="form-control" id="edit-job-name" placeholder="Front End Developer">
+                            <label for="edit-job-name">Job Title</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="edit-job-description" style="height: 250px"></textarea>
+                            <label for="edit-job-description">Description</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 form-floating d-flex flex-column">
+                        <input type="url" class="form-control" id="edit-job-img" placeholder="Insert Image URL">
+                        <label for="edit-job-img">Image link</label>
+
+                        <div class="mt-3 new-img-thumbnail d-flex justify-content-center">
+                            <img src="https://www.istockphoto.com/resources/images/PhotoFTLP/1154103408.jpg" class="img-thumbnail object-fit-cover border rounded">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="d-flex flex-column col-md-3 mx-5">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit-job-location"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-location">Location</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit-job-seniority"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-seniority">Seniority</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit-job-category"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-category">Category</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="edit-job-long-term">
+                            <label class="form-check-label" for="edit-job-long-term">
+                                Long Term
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 form-floating d-flex flex-column">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="edit-job-salary"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-salary">Salary</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit-job-vacation"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-vacation">Vacation</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="edit-job-health"
+                                placeholder="Front End Developer">
+                            <label for="edit-job-health">Health Ensurance</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="edit-job-internet">
+                            <label class="form-check-label" for="edit-job-internet">
+                                Internet Paid
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center form-floating col-md-3 mx-5">
+                        <input type="text" class="form-control" id="edit-job-languages" placeholder="Front End Developer">
+                        <label for="edit-job-languages">Languages</label>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" id="btn-edit-job" type="submit">Edit Job</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
