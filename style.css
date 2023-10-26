@@ -1,27 +1,99 @@
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(to left bottom, #89aaa7, #7aaaa6, #6aaaa5, #58aaa3, #41aaa2, #34a098, #25978e, #118d84, #167870, #18635d, #184f4b, #163c39);
+}
 
-.new-img-thumbnail{
-    height: 250px;
-    width: 250px;
+.loader {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 30px, 0 -30px;
+    border-radius: 4px;
+    background: currentColor;
+    display: block;
+    margin: 200px auto 0;
+    position: relative;
+    color: #FFF;
+    transform: translateY(30px);
+    box-sizing: border-box;
+    animation: animloader 2s ease infinite;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 30px, 0 -30px;
+    border-radius: 4px;
+    background: currentColor;
+    color: #FFF;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    animation: animloader 2s 0.2s ease infinite;
+}
+
+.loader::before {
+    animation-delay: 0.4s;
+    left: 60px;
+}
+
+@keyframes animloader {
+    0% {
+        top: 0;
+        color: white;
+    }
+
+    50% {
+        top: 30px;
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    100% {
+        top: 0;
+        color: white;
+    }
 }
 
 
-.job-description{
+.form-color {
+    background-color: #F1FAFF;
+}
+
+.card {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.card-body {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.thumbnail {
+    height: 250px;
+    width: 250px;
+    border: 3px solid #7d716b;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.skills-list {
+    height: 150px;
+    width: 100%;
+}
+
+.list-group-item {
+    width: 140px;
+}
+
+
+.job-description {
     width: 100%;
     height: 100%;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-
-
-
-
-
-
-
-
-
-
-
